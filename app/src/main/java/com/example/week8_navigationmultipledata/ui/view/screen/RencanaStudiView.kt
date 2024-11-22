@@ -47,7 +47,7 @@ import com.example.week8_navigationmultipledata.ui.widget.DynamicSelectedField
 @Composable
 fun RencanaStudiView(
     mahasiswa: Mahasiswa,
-    onSubmitButtonClicked:()-> Unit,
+    onSubmitButtonClicked:(MutableList<String>)-> Unit,
     onBackButtonClicked:()-> Unit
 ){
     var chosenDropdown by remember { mutableStateOf("") }
@@ -175,9 +175,11 @@ fun RencanaStudiView(
                 Button(onClick = onBackButtonClicked() ) {
                     Text(text = "Back")
                 }
-                Button(onClick = onSubmitButtonClicked(listData)) {
+                Button(onClick = onSubmitButtonClicked(listData),
+                    enabled = checked) {
                     Text(text = "Submit")
                 }
+
             }
         }
 

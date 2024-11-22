@@ -172,10 +172,10 @@ fun RencanaStudiView(
 
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly) {
-                Button(onClick = onBackButtonClicked() ) {
+                Button(onClick = {onBackButtonClicked()} ) {
                     Text(text = "Back")
                 }
-                Button(onClick = onSubmitButtonClicked(listData),
+                Button(onClick = {onSubmitButtonClicked(listData)},
                     enabled = checked) {
                     Text(text = "Submit")
                 }

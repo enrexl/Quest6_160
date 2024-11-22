@@ -60,7 +60,7 @@ fun RencanaStudiView(
             .fillMaxSize()
             .background(color = colorResource(id = R.color.Primary))
     ) {
-
+        Spacer(modifier = Modifier.padding(20.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -69,7 +69,7 @@ fun RencanaStudiView(
         ) {
             Image(painter = painterResource(id = R.drawable.logo),
                 contentDescription = "",
-                modifier = Modifier.size(150.dp)
+                modifier = Modifier.size(100.dp)
             )
 
             Spacer(modifier = Modifier.padding(start = 16.dp))

@@ -108,6 +108,9 @@ fun RencanaStudiView(
             )
             .fillMaxSize())
         {
+            Column(modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)) {
             Text(text = "Pilih Mata Kuliah Peminatan",
                 fontWeight = FontWeight.Bold)
 
@@ -172,17 +175,17 @@ fun RencanaStudiView(
 
             Row(modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly) {
-                Button(onClick = {onBackButtonClicked()} ) {
+                Button(onClick = { onBackButtonClicked() }) {
                     Text(text = "Back")
                 }
-                Button(onClick = {onSubmitButtonClicked(listData)},
-                    enabled = checked) {
+                Button(
+                    onClick = { onSubmitButtonClicked(listData) },
+                    enabled = checked
+                ) {
                     Text(text = "Submit")
                 }
-
+            }
             }
         }
-
     }
-
 }

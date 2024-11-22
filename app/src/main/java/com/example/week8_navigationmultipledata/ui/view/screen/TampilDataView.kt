@@ -39,14 +39,15 @@ fun TampilDataView(
     modifier: Modifier = Modifier,
     mhs : Mahasiswa,
     mk : RencanaStudi,
-    onBackButtonClicked:()-> Unit
+    onBackButtonClicked:()-> Unit,
+    onSubmitButtonClicked:()-> Unit
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = colorResource(id = R.color.Primary))
     ) {
-
+        Spacer(modifier = Modifier.padding(20.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -56,7 +57,7 @@ fun TampilDataView(
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = "",
-                modifier = Modifier.size(150.dp)
+                modifier = Modifier.size(100.dp)
             )
 
             Spacer(modifier = Modifier.padding(start = 16.dp))
@@ -101,17 +102,20 @@ fun TampilDataView(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(25.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+
 
             ) {
+                Column(modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally) {
                 Text(
                     text = "Data Mahasiswa",
                     fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold
-                )
+                    fontWeight = FontWeight.Bold,
+
+                )}
                 HorizontalDivider()
 
-                Column {
+                Column() {
                     Text(text = "Informasi Mahasiswa", fontWeight = FontWeight.Bold)
                     Spacer(modifier = Modifier.height(10.dp))
                     Text(text = "NIM: " + mhs.nim)
@@ -124,16 +128,17 @@ fun TampilDataView(
                     Text(text = "Mata Kuliah: " + mk.namaMK)
                     Text(text = "Kelas: " + mk.kelas)
                 }
-            }
 
-            Spacer(modifier = Modifier.height(16.dp))
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                Button(onClick = { onBackButtonClicked() }) {
-                    Text(text = "Back")
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Button(onClick = { onBackButtonClicked() }) {
+                        Text(text = "Home")
+                    }
                 }
             }
 

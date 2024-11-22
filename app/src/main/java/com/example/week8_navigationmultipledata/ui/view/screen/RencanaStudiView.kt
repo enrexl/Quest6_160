@@ -1,5 +1,6 @@
 package com.example.week8_navigationmultipledata.ui.view.screen
 
+import android.widget.Button
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,7 +15,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material3.Button
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -34,6 +39,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.week8_navigationmultipledata.R
+import com.example.week8_navigationmultipledata.data.MataKuliah
+import com.example.week8_navigationmultipledata.data.RuangKelas
+import com.example.week8_navigationmultipledata.ui.widget.DynamicSelectedField
 
 @Preview
 @Composable
@@ -108,13 +116,68 @@ fun RencanaStudiView(
                 fontSize = 12.sp)
             Spacer(modifier = Modifier.padding(8.dp))
 
-            DynamicSelectTextField()
+            DynamicSelectedField(
+                selectedValue = chosenDropdown,
+                options = MataKuliah.options,
+                label = "Mata Kuliah",
+                onValueChangedEvent = {
+                    chosenDropdown = it
+                }
+            )
+
+            Spacer(modifier = Modifier.padding(8.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.padding(8.dp))
+            Text(
+                text = "Pilih Kelas Belajar",
+                fontWeight = FontWeight.Bold)
+
+            Text(
+                text = "Silahkan pilih kelas dari mata kuliah yang anda inginkan",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Light)
 
             Spacer(modifier = Modifier.padding(8.dp))
             Row(modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly)
-            {
+                horizontalArrangement = Arrangement.SpaceEvenly){
+                RuangKelas.kelas.forEach{data->
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        RadioButton(
+                            selected = pilihanKelas == data,
+                            onClick = {pilihanKelas = data}
+                        )
+                        Text(data)
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.padding(8.dp))
+            HorizontalDivider()
+            Spacer(modifier = Modifier.padding(8.dp))
+            Text(text = "Klausul Persetujuan Mahasiswa",
+                fontWeight = FontWeight.Bold)
 
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Checkbox(
+                    checked = checked,
+                    onCheckedChange = {checked=it},
+                    enabled = chosenDropdown.isNotBlank() && pilihanKelas.isNotBlank()
+                )
+                Text(
+                    text = "Saya menyetujui setiap pernyataan yang ada tanpa ada paksaan dari pihak manapun.",
+                    fontWeight = FontWeight.Light,
+                    fontSize = 10.sp
+                )
+            }
+            Spacer(modifier = Modifier.padding(8.dp))
+
+            Row(modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly) {
+                Button(onClick = onBackButtonClicked() ) {
+                    Text(text = "Back")
+                }
+                Button(onClick = onSubmitButtonClicked(listData)) {
+                    Text(text = "Submit")
+                }
             }
         }
 

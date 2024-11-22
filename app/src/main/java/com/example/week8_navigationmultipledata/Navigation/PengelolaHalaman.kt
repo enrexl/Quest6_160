@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -13,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.week8_navigationmultipledata.ui.view.screen.MahasiswaFormView
 import com.example.week8_navigationmultipledata.ui.view.screen.RencanaStudiView
 import com.example.week8_navigationmultipledata.ui.view.screen.SplashView
+import com.example.week8_navigationmultipledata.ui.view.screen.TampilDataView
 import com.example.week8_navigationmultipledata.ui.view.viewmodel.MahasiswaViewModel
 import com.example.week8_navigationmultipledata.ui.view.viewmodel.RencanaStudiViewModel
 
@@ -32,6 +32,8 @@ fun MahasiswaApp(
 ) {
 
     val mahasiswaUiState = mahasiswaViewModel.mahasiswaUIState.collectAsState().value
+    val krsUiState = rencanaStudiViewModel.krsStateui.collectAsState().value
+
 
     NavHost(
         navController = navController,
@@ -49,7 +51,7 @@ fun MahasiswaApp(
         composable(route = Halaman.Mahasiswa.name){
             MahasiswaFormView(onSubmitButtonClicked ={
                 mahasiswaViewModel.saveDataMahasiswa(it)
-                navController.navigate(Halaman.Splash.name)},
+                navController.navigate(Halaman.Data.name)},
                 onBackButtonCLicked = {
                     navController.popBackStack()
 
@@ -66,6 +68,14 @@ fun MahasiswaApp(
             })
         }
 
+        composable(route = Halaman.Tampil.name) {
+            TampilDataView(
+                 mk = krsUiState,
+                mhs = mahasiswaUiState,
+                onSubmitButtonClicked =  {},
+                onBackButtonClicked = { navController.navigate(Halaman.Splash.name)}
+            )
 
+        }
     }
 }

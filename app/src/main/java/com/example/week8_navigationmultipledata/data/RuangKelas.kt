@@ -1,3 +1,7 @@
 package com.example.week8_navigationmultipledata.data
 
-data class RuangKelas()
+object RuangKelas {
+    val kelas = listOf(
+        "A","B","C","D"
+    )
+}

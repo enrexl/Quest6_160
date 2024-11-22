@@ -33,7 +33,8 @@ fun DynamicSelectedField(
         modifier = modifier
     ) {
         OutlinedTextField(
-            readOnly = selectedValue,
+            readOnly = true,
+            value = selectedValue,
             onValueChange = {},
             label = {Text(text = label)},
             trailingIcon = {
@@ -48,7 +49,7 @@ fun DynamicSelectedField(
         ExposedDropdownMenu(expanded = expanded, onDismissRequest = {expanded=false}) {
             options.forEach{option: String ->
                 DropdownMenuItem(
-                    text = {Text(text = options)},
+                    text = {Text(text = option)},
                     onClick = {
                         expanded=false
                         onValueChangedEvent(option)

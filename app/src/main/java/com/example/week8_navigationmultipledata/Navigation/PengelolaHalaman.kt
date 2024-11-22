@@ -17,7 +17,9 @@ import com.example.week8_navigationmultipledata.ui.view.viewmodel.MahasiswaViewM
 
 enum class Halaman{
     Splash,
-    Mahasiswa
+    Mahasiswa,
+    Data,
+    Tampil
 }
 @Composable
 fun MahasiswaApp(
@@ -50,5 +52,7 @@ fun MahasiswaApp(
 
             })
         }
+
+        composable(route = Halaman.)
     }
 }
